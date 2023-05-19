@@ -62,7 +62,7 @@ project.lock.json
 project.fragment.lock.json
 artifacts/
 bin/
-obj/
+.obj/
 
 # Tye
 .tye/
