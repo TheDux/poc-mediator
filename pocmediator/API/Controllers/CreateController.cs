@@ -12,12 +12,12 @@ public class CreateController : ControllerBase
 {
     [HttpPost]
     [Route("create")]
-    public Task<CreateResponse> Create(
+    public async Task<CreateResponse> Create(
         [FromServices] IMediator mediator,
         [FromBody] CreateRequest command
         )
     {
-        var response = mediator.Send(command);
+        var response = await mediator.Send(command);
         return response;
     }
 
