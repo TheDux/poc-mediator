@@ -1,4 +1,5 @@
 using Domain.Handlers;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using pocmediator.Domain.Requests;
 using pocmediator.Domain.Responses;
@@ -11,12 +12,12 @@ public class CreateController : ControllerBase
 {
     [HttpPost]
     [Route("create")]
-    public CreateResponse Create(
-        [FromServices] ICreateHandler handler,
+    public Task<CreateResponse> Create(
+        [FromServices] IMediator mediator,
         [FromBody] CreateRequest command
         )
     {
-        var response = handler.Handle(command);
+        var response = mediator.Send(command);
         return response;
     }
 
