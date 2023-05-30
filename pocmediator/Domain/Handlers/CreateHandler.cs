@@ -6,6 +6,7 @@ namespace Domain.Handlers;
 
 public class CreateHandler : IRequestHandler<CreateRequest, CreateResponse>
 {
+    private readonly ILogger<CreateHandler> _logger;
     public Task<CreateResponse> Handle(CreateRequest request, CancellationToken cancellationToken)
     {
         try
@@ -20,9 +21,10 @@ public class CreateHandler : IRequestHandler<CreateRequest, CreateResponse>
             };
             return Task.FromResult(result);
         }
-        catch
+        catch(Exception ex)
         {
-            throw new NotImplementedException();
+            _logger.LogError(ex, "[CreateHandler] Error while calling task");
+            throw;
         }
     }
 }
